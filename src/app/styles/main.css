@@ -1,0 +1,195 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@plugin 'tailwind-scrollbar';
+
+:root {
+  /* base colors */
+  --black: 0deg 0% 0%; /* #000000 */
+  --white: 0deg 0% 100%; /* #ffffff */
+  --foreground-dark: 240deg 3% 35%; /* #57575c */
+  --foreground-light: 240deg 2% 68%; /* #acacaf */
+
+  /* inversive colors - light */
+  --background: var(--white); /* #ffffff */
+  --background-secondary: 218deg 16% 96%; /* #f3f4f6 */
+  --foreground: var(--foreground-dark); /* #57575c */
+  --foreground-muted: 240deg 3% 55%; /* #898990 */
+  --accent: 150deg 71% 47%; /* #23cd78 */
+  --accent-hover: 152deg 71% 43%; /* #20bd73 */
+  --accent-secondary: 240deg 5% 26%; /* #3f3f46  */
+  --accent-secondary-hover: 240deg 4% 16%; /* #27272a */
+  --accent-tertiary: 220deg 15% 96%; /* f9fafb */
+  --accent-foreground: 0deg 0% 100%; /* #ffffff */
+  --destructive: 352deg 100% 48%; /* #f50021 */
+  --destructive-hover: 352deg 100% 40%; /* #cc001b */
+  --destructive-foreground: 0deg 0% 100%; /* #ffffff */
+  --divider: 223deg 23% 93%; /* #e9ebf1 */
+  --divider-secondary: 223deg 25% 88% /* #d8dde8 */;
+  --contrast: var(--white); /* ffffff */
+
+  /* layout variables */
+  --header-height: 73px;
+  --spacing-layout: 5rem;
+  --gap-layout: 1.5rem;
+
+  @media (max-width: 1279px) {
+    --spacing-layout: 2rem;
+  }
+
+  @media (max-width: 1023px) {
+    --spacing-layout: 1.5rem;
+    --gap-layout: 1rem;
+  }
+
+  @media (max-width: 767px) {
+    --spacing-layout: 1rem;
+    --gap-layout: 0.5rem;
+  }
+}
+
+:root.dark {
+  /* inversive colors - dark */
+  --background: 240deg 6% 10%; /* #18181b */
+  --background-secondary: 240deg 3% 11.8%; /* #1d1d1f */
+  --foreground: var(--foreground-light); /* #acacaf */
+  --foreground-muted: 240deg 2% 47%; /* #75757a */
+  --accent: 150deg 71% 55%; /* #3bde8c */
+  --accent-hover: 150deg 71% 47%; /* #23cd78 */
+  --accent-secondary: 240deg 6% 90%; /* #e4e4e7 */
+  --accent-secondary-hover: 240deg 6% 84%; /* #d4d4d9 */
+  --accent-tertiary: 240deg 4% 16%; /* #27272a */
+  --accent-foreground: var(--black); /* #000000 */
+  --destructive: 352deg 100% 62%; /* #ff3d57 */
+  --destructive-hover: 352deg 100% 57%; /* #ff2441 */
+  --destructive-foreground: var(--accent-secondary); /* #000000 */
+  --divider: 240deg 3% 19%; /* #2f2f32 */
+  --divider-secondary: 240deg 3% 25%; /* #3e3e42 */
+  --contrast: var(--black); /* #000000 */
+}
+
+@theme {
+  /* colors */
+  --color-white: hsl(var(--white));
+  --color-black: hsl(var(--black));
+  --color-foreground-white: hsl(var(--foreground-white));
+  --color-foreground-dark: hsl(var(--foreground-dark));
+  --color-background: hsl(var(--background));
+  --color-background-secondary: hsl(var(--background-secondary));
+  --color-foreground: hsl(var(--foreground));
+  --color-foreground-muted: hsl(var(--foreground-muted));
+  --color-accent: hsl(var(--accent));
+  --color-accent-hover: hsl(var(--accent-hover));
+  --color-accent-secondary: hsl(var(--accent-secondary));
+  --color-accent-secondary-hover: hsl(var(--accent-secondary-hover));
+  --color-accent-tertiary: hsl(var(--accent-tertiary));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-hover: hsl(var(--destructive-hover));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-divider: hsl(var(--divider));
+  --color-divider-secondary: hsl(var(--divider-secondary));
+  --color-contrast: hsl(var(--contrast));
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .button-accent {
+    @apply button before:bg-accent after:bg-accent-hover text-accent-foreground;
+  }
+
+  .button-accent-secondary {
+    @apply button before:bg-accent-secondary after:bg-accent-secondary-hover text-accent-foreground;
+  }
+
+  .button-destructive {
+    @apply button before:bg-destructive after:bg-destructive-hover text-destructive-foreground;
+  }
+
+  .button-outline {
+    @apply border-divider hover:bg-accent-tertiary border font-medium shadow-sm;
+  }
+
+  .button-ghost {
+    @apply hover:bg-accent-tertiary font-medium;
+  }
+}
+
+@utility button {
+  @apply relative overflow-hidden font-medium before:absolute before:inset-0 before:-z-[2] before:inline-block before:size-full before:content-[""] after:absolute after:inset-0 after:-z-[1] after:inline-block after:size-full after:origin-right after:scale-x-0 after:transition-transform after:duration-300 after:content-[""] hover:shadow-xl hover:after:origin-left hover:after:scale-x-100;
+}
+
+@utility grid-layout {
+  @apply gap-x-layout grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12;
+}
+
+@utility gap-x-layout {
+  @apply gap-x-(--gap-layout);
+}
+
+@utility gap-y-layout {
+  @apply gap-y-(--gap-layout);
+}
+
+@utility px-layout {
+  @apply px-(--spacing-layout);
+}
+
+@utility pl-layout {
+  @apply pl-(--spacing-layout);
+}
+
+@utility pr-layout {
+  @apply pr-(--spacing-layout);
+}
+
+@utility mx-layout {
+  @apply mx-(--spacing-layout);
+}
+
+@utility ml-layout {
+  @apply ml-(--spacing-layout);
+}
+
+@utility mr-layout {
+  @apply mr-(--spacing-layout);
+}
+
+@utility -mx-layout {
+  @apply -mx-(--spacing-layout);
+}
+
+@utility -ml-layout {
+  @apply -ml-(--spacing-layout);
+}
+
+@utility -mr-layout {
+  @apply -mr-(--spacing-layout);
+}
+
+@utility link {
+  @apply bg-gradient-to-r from-current to-current bg-[length:0_1px] bg-right-bottom bg-no-repeat transition-[background-size] duration-300 ease-in-out;
+}
+
+@utility link-active {
+  @apply bg-[length:100%_1px] bg-left-bottom;
+}
+
+@utility stretched-link {
+  @apply before:absolute before:inset-0 before:z-20 before:bg-black/0 before:content-[""];
+}
+
+@utility card-gradient-border {
+  background: radial-gradient(
+    200px circle at calc(var(--x) - var(--offset-l))
+      calc(var(--y) - var(--offset-t)),
+    var(--color-accent),
+    transparent
+  );
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
