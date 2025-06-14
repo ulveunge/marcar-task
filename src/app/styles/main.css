@@ -89,11 +89,17 @@
   --color-divider: hsl(var(--divider));
   --color-divider-secondary: hsl(var(--divider-secondary));
   --color-contrast: hsl(var(--contrast));
+
+  --font-montserrat: var(--font-montserrat);
 }
 
 @layer base {
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-montserrat;
+  }
+
+  main {
+    @apply px-layout mt-24 mb-20;
   }
 }
 
@@ -111,7 +117,7 @@
   }
 
   .button-outline {
-    @apply border-divider hover:bg-accent-tertiary border font-medium shadow-sm;
+    @apply border-divider hover:bg-accent-tertiary border font-medium;
   }
 
   .button-ghost {
