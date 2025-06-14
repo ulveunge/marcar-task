@@ -99,7 +99,7 @@
   }
 
   main {
-    @apply px-layout mt-24 mb-20;
+    @apply px-layout mt-10 mb-20 lg:mt-24;
   }
 }
 
