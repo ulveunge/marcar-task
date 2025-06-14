@@ -49,7 +49,7 @@ export default function CarCard({ data, ...props }: Props) {
             sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
             priority
             src={data.images.image[0]}
-            alt='title'
+            alt={`${data.markId} ${data.folderId}, ${data.year}`}
           />
         </div>
       </CardHeader>
