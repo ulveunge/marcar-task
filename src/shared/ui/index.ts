@@ -8,3 +8,4 @@ export { default as ScrollShadow } from './scroll-shadow/ScrollShadow';
 export * from './pagination';
 export { default as CustomPagination } from './custom-pagination/CustomPagination';
 export * from './select';
+export { default as Label } from './label/Label';
