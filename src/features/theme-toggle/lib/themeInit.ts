@@ -10,10 +10,10 @@ export default function themeInit() {
   };
 
   const setTheme = (theme: TTheme) => {
-    document.cookie = `theme=${theme}; path=/; max-age=31536000; SameSite=Strict`;
+    document.cookie = `theme=${theme}; path=/; max-age=31536000; SameSite=Lax`;
   };
 
-  let stored = getTheme();
+  const stored = getTheme();
   const matcher = window.matchMedia('(prefers-color-scheme: dark)');
 
   const getSystemTheme = (isDark: boolean) =>
@@ -21,8 +21,7 @@ export default function themeInit() {
 
   if (!stored) {
     setTheme(getSystemTheme(matcher.matches));
-    stored = getTheme()!;
-    document.documentElement.classList.toggle('dark', stored.includes('dark'));
+    document.documentElement.classList.toggle('dark', matcher.matches);
   }
 
   matcher.addEventListener('change', (e) => {

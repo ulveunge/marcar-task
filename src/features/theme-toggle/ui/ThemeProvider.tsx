@@ -20,7 +20,7 @@ export default function ThemeProvider({
       cookies.set('theme', theme, {
         expires: 31536000,
         path: '/',
-        sameSite: 'Strict',
+        sameSite: 'Lax',
       });
     };
 
