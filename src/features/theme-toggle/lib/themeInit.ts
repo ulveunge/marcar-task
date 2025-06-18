@@ -13,7 +13,7 @@ export default function themeInit() {
     document.cookie = `theme=${theme}; path=/; max-age=31536000; SameSite=Strict`;
   };
 
-  const stored = getTheme();
+  let stored = getTheme();
   const matcher = window.matchMedia('(prefers-color-scheme: dark)');
 
   const getSystemTheme = (isDark: boolean) =>
@@ -21,9 +21,9 @@ export default function themeInit() {
 
   if (!stored) {
     setTheme(getSystemTheme(matcher.matches));
+    stored = getTheme()!;
+    document.documentElement.classList.toggle('dark', stored.includes('dark'));
   }
-
-  document.documentElement.classList.toggle('dark', matcher.matches);
 
   matcher.addEventListener('change', (e) => {
     const currentStoredTheme = getTheme();
