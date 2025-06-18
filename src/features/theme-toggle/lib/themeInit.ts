@@ -21,8 +21,9 @@ export default function themeInit() {
 
   if (!stored) {
     setTheme(getSystemTheme(matcher.matches));
-    document.documentElement.classList.toggle('dark', matcher.matches);
   }
+
+  document.documentElement.classList.toggle('dark', matcher.matches);
 
   matcher.addEventListener('change', (e) => {
     const currentStoredTheme = getTheme();
